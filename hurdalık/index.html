@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Anasayfa | Altınyıldız{% endblock %}
+{% block content %}
+<h1 class="section-title">Yeni Ürünler</h1>
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <a href="{% url 'product_detail' product.id %}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.price }} ₺</p>
+        </a>
+        <form method="post" action="{% url 'add_to_cart' product.id %}">{% csrf_token %}
+            <button class="buy-button">Sepete Ekle</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

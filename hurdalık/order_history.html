@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Sipariş Geçmişim</h2>
+{% for order in orders %}
+  <div class="order-card">
+    <h3>Sipariş #{{ order.id }} - {{ order.created_at }}</h3>
+    <p><strong>Kargo Durumu:</strong> {{ order.get_cargo_status_display }}</p>
+    <ul>
+      {% for item in order.items.all %}
+        <li>{{ item.product.name }} ({{ item.quantity }}) - {{ item.total_price }} ₺</li>
+      {% endfor %}
+    </ul>
+    <strong>Toplam: {{ order.total_price }} ₺</strong>
+  </div>
+{% empty %}
+  <p>Henüz bir siparişiniz yok.</p>
+{% endfor %}
+{% endblock %}

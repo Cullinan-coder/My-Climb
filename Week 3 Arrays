@@ -1,0 +1,73 @@
+'''
+S = [10,20,30,40,50]
+S.insert(2,25)
+print(S)
+# Output: [10, 20, 25, 30, 40, 50]
+S.remove(40)    
+print(S)
+# Output: [10, 20, 25, 30, 50]
+S.append(60)
+print(S)
+# Output: [10, 20, 25, 30, 50, 60]
+S.pop()
+print(S)
+# Output: [10, 20, 25, 30, 50]
+S.reverse()
+print(S)
+# Output: [50, 30, 25, 20, 10]
+S.sort()
+print(S)
+# Output: [10, 20, 25, 30, 50]
+'''
+#--------------------------------------------------------------
+'''''
+def remove_duplicates(S):
+    unique = []
+    for x in S:
+        if x not in unique:
+            unique.append(x)
+    return unique
+
+S = [10, 20, 20, 30, 30, 30, 40]
+print(remove_duplicates(S)) 
+'''
+#--------------------------------------------------------------
+'''
+def binary_search(S, target):
+    left, right = 0, len(S) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if S[mid] == target:
+            return mid
+        elif S[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return "Not found"
+
+S = [3,7,9,12,15,20 ]
+print(binary_search(S, int(input("Enter a number to search: "))))
+'''
+#--------------------------------------------------------------
+''' 
+S = [10,20,30,40,50]
+max_value , min_value = S[0], S[0]
+for val in S:
+    if val > max_value:
+        max_value = val
+    if val < min_value:
+        min_value = val
+print("Max:", max_value, "Min:", min_value)
+'''
+#--------------------------------------------------------------
+'''
+S = [64,35,25,12,22,11,90]
+for i in range(len(S)):
+    min_idx = i
+    for j in range(i+1, len(S)):
+        if S[j] < S[min_idx]:
+            min_idx = j
+    S[i], S[min_idx] = S[min_idx], S[i]
+print("Sorted array is:", S)
+'''
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Altınyıldız Clone{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/">Altınyıldız</a></div>
+        <nav>
+            <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/favorites/">Favoriler</a></li>
+                <li><a href="/cart/">Sepet</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="/orders/">Siparişlerim</a></li>
+                    <li><a href="/logout/">Çıkış</a></li>
+                    <li style="color:white;">Hoş geldin, {{ user.username }}</li>
+                {% else %}
+                    <li><a href="/login/">Giriş</a></li>
+                    <li><a href="/signup/">Kayıt</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Altınyıldız Clone. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="/static/js/scripts.js"></script>
+</body>
+</html>

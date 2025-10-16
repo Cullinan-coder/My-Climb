@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Sepet{% endblock %}
+{% block content %}
+<h2>Sepetim</h2>
+{% if items %}
+<table>
+  <tr>
+    <th>Ürün</th>
+    <th>Adet</th>
+    <th>Fiyat</th>
+    <th></th>
+  </tr>
+  {% for item in items %}
+  <tr>
+    <td>{{ item.product.name }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ item.total_price }} ₺</td>
+    <td><a href="{% url 'remove_from_cart' item.product.id %}">Kaldır</a></td>
+  </tr>
+  {% endfor %}
+</table>
+<p><strong>Toplam: {{ total }} ₺</strong></p>
+<a href="{% url 'checkout' %}">Siparişi Tamamla</a>
+{% else %}
+<p>Sepetiniz boş.</p>
+{% endif %}
+{% endblock %}

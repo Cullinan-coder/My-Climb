@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }} | Detay{% endblock %}
+{% block content %}
+<div class="product-detail">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p><strong>{{ product.price }} ₺</strong></p>
+
+    {% if user.is_authenticated %}
+        {% if product in user.favorite_set.all.values_list('product', flat=True) %}
+            <a href="{% url 'remove_favorite' product.id %}">Favorilerden Çıkar</a>
+        {% else %}
+            <a href="{% url 'add_favorite' product.id %}">Favorilere Ekle</a>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'add_to_cart' product.id %}">
+        {% csrf_token %}
+        <button type="submit">Sepete Ekle</button>
+    </form>
+</div>
+{% endblock %}
